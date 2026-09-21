@@ -1,6 +1,7 @@
 import { LayoutTemplate, House, CircleX, Settings, X } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { CSSProperties } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   MdDividerR,
   MdIconR,
@@ -16,14 +17,14 @@ import type { AppUser } from '../../types/user'
 interface NavItem {
   label: string
   icon: LucideIcon
-  active?: boolean
+  path: string
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Inicio', icon: House },
-  { label: 'Plantillas', icon: LayoutTemplate, active: true },
-  { label: 'Categorías', icon: CircleX },
-  { label: 'Configuración', icon: Settings },
+  { label: 'Inicio', icon: House, path: '/' },
+  { label: 'Plantillas', icon: LayoutTemplate, path: '/plantillas' },
+  { label: 'Categorías', icon: CircleX, path: '/categorias' },
+  { label: 'Configuración', icon: Settings, path: '/configuracion' },
 ]
 
 const user = userData as AppUser
@@ -34,6 +35,9 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   return (
     <>
       {open && (
@@ -76,27 +80,38 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             { '--md-list-container-color': 'transparent' } as CSSProperties
           }
         >
-          {NAV_ITEMS.map(({ label, icon: Icon, active }) => (
-            <MdListItemR
-              key={label}
-              type="button"
-              aria-current={active ? 'page' : undefined}
-              className={`mb-1 rounded-lg last:mb-0 ${
-                active ? 'bg-primary-container' : 'hover:bg-primary-container/40'
-              }`}
-              style={
-                {
-                  '--md-list-item-label-text-font': 'var(--font-display)',
-                  '--md-list-item-label-text-weight': active ? '600' : '500',
-                } as CSSProperties
-              }
-            >
-              <span slot="start" className="inline-flex text-secondary">
-                <Icon size={20} strokeWidth={2} />
-              </span>
-              {label}
-            </MdListItemR>
-          ))}
+          {NAV_ITEMS.map(({ label, icon: Icon, path }) => {
+            const active = location.pathname === path
+            return (
+              <MdListItemR
+                key={label}
+                type="link"
+                href={path}
+                aria-current={active ? 'page' : undefined}
+                onClick={(event) => {
+                  event.preventDefault()
+                  onClose()
+                  navigate(path)
+                }}
+                className={`mb-1 rounded-lg last:mb-0 ${
+                  active
+                    ? 'bg-primary-container'
+                    : 'hover:bg-primary-container/40'
+                }`}
+                style={
+                  {
+                    '--md-list-item-label-text-font': 'var(--font-display)',
+                    '--md-list-item-label-text-weight': active ? '600' : '500',
+                  } as CSSProperties
+                }
+              >
+                <span slot="start" className="inline-flex text-secondary">
+                  <Icon size={20} strokeWidth={2} />
+                </span>
+                {label}
+              </MdListItemR>
+            )
+          })}
         </MdListR>
 
         <div className="flex-1" />

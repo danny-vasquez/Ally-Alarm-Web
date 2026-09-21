@@ -20,12 +20,12 @@
   --color-outline-variant: #eeeeee;
   --color-tonal: #f5eff7;
 
-  /* Acentos de categoría (asignables a nuevas plantillas) */
+  /* Acentos de categoría (asignables a nuevas plantillas/categorías) */
   --color-category-a: #c2ebbc;
   --color-category-b: #98e7d7;
   --color-category-c: #fdef90;
-  --color-category-d: #f7c6d9;
-  --color-category-e: #c6dff7;
+  --color-category-d: #b1cbf2;
+  --color-category-e: #fbc3c3;
 
   /* Tipografía */
   --font-display: 'Comfortaa', system-ui, sans-serif;

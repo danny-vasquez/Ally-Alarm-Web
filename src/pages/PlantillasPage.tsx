@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import Button from '../components/ui/Button'
 import Dialog from '../components/ui/Dialog'
 import Select from '../components/ui/Select'
+import PageHeader from '../components/layout/PageHeader'
 import TemplateCard from '../components/templates/TemplateCard'
 import templatesData from '../data/templates.json'
 import userData from '../data/user.json'
@@ -46,15 +47,10 @@ export default function PlantillasPage() {
 
   return (
     <>
-      <div className="flex flex-col gap-2.5">
-        <h1 className="font-display text-2xl font-bold text-on-primary-container lg:text-[32px]">
-          ¡Estas son tus plantillas, {user.name}!
-        </h1>
-        <p className="font-display text-base text-on-primary-container">
-          Organiza tus alarmas con plantillas para tus rutinas según la
-          categoría.
-        </p>
-      </div>
+      <PageHeader
+        title={`¡Estas son tus plantillas, ${user.name}!`}
+        subtitle="Organiza tus alarmas con plantillas para tus rutinas según la categoría."
+      />
 
       <div className="flex flex-col-reverse items-stretch justify-between gap-4 sm:flex-row sm:items-end">
         <div className="w-full sm:w-64">
