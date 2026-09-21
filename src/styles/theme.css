@@ -1,0 +1,94 @@
+/**
+ * Design tokens extraídos del diseño de Figma (base 1920x1080).
+ * Cada token queda disponible como utilidad de Tailwind:
+ *   --color-primary        -> bg-primary / text-primary / border-primary
+ *   --font-display         -> font-display
+ *   --spacing-sidebar      -> w-sidebar / p-sidebar / etc.
+ */
+@theme {
+  /* Marca */
+  --color-primary: #6f6bc1;
+  --color-primary-container: #bcbfff;
+  --color-on-primary-container: #1b1b1f;
+  --color-secondary: #6250a4;
+
+  /* Superficies */
+  --color-surface: #ffffff;
+  --color-surface-tint: rgba(188, 191, 255, 0.4);
+  --color-app-bg: rgba(188, 191, 255, 0.3);
+  --color-outline: #bcbfff;
+  --color-outline-variant: #eeeeee;
+  --color-tonal: #f5eff7;
+
+  /* Acentos de categoría (asignables a nuevas plantillas) */
+  --color-category-a: #c2ebbc;
+  --color-category-b: #98e7d7;
+  --color-category-c: #fdef90;
+  --color-category-d: #f7c6d9;
+  --color-category-e: #c6dff7;
+
+  /* Tipografía */
+  --font-display: 'Comfortaa', system-ui, sans-serif;
+
+  /* Medidas del layout (base diseño 1920x1080) */
+  --spacing-sidebar: 280px;
+  --spacing-content-x: 58px;
+  --spacing-content-y: 40px;
+}
+
+/**
+ * Puente de tokens hacia Material Web (@material/web), la implementación
+ * oficial de Material Design 3 de Google. Los componentes md-* leen estas
+ * variables --md-sys-* / --md-ref-* de forma global, así que remapearlas
+ * aquí reskinea filled-button, outlined-select, dialog, list-item, etc.
+ * con la paleta y tipografía del diseño sin tocar el código fuente de la
+ * librería.
+ */
+:root {
+  /* Roles de color del sistema MD3 */
+  --md-sys-color-primary: var(--color-primary);
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: var(--color-primary-container);
+  --md-sys-color-on-primary-container: var(--color-on-primary-container);
+
+  --md-sys-color-secondary: var(--color-secondary);
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: var(--color-primary-container);
+  --md-sys-color-on-secondary-container: var(--color-on-primary-container);
+
+  --md-sys-color-surface: var(--color-surface);
+  --md-sys-color-on-surface: var(--color-on-primary-container);
+  --md-sys-color-surface-container: var(--color-tonal);
+  --md-sys-color-surface-container-low: var(--color-surface);
+  --md-sys-color-surface-container-high: var(--color-tonal);
+  --md-sys-color-surface-container-highest: var(--color-tonal);
+  --md-sys-color-on-surface-variant: var(--color-secondary);
+  --md-sys-color-inverse-surface: var(--color-on-primary-container);
+  --md-sys-color-inverse-on-surface: #ffffff;
+
+  --md-sys-color-outline: var(--color-outline);
+  --md-sys-color-outline-variant: var(--color-outline-variant);
+
+  /* Tipografía de referencia usada por todos los componentes md-* */
+  --md-ref-typeface-plain: var(--font-display);
+  --md-ref-typeface-brand: var(--font-display);
+
+  /* El diseño usa esquinas de 8px, no el "full/pill" por defecto de MD3 */
+  --md-sys-shape-corner-full: 8px;
+  --md-sys-shape-corner-extra-large: 8px;
+  --md-sys-shape-corner-large: 8px;
+  --md-sys-shape-corner-medium: 8px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-extra-small: 8px;
+}
+
+/**
+ * El reset de Tailwind Preflight (margin: 0 universal) gana por orden de
+ * cascada sobre la regla interna `:host { margin: auto }` de md-dialog, que
+ * es como el <dialog> nativo se autocentra en la pantalla. Se restaura
+ * explícitamente para que el diálogo quede centrado en vez de pegado a la
+ * esquina superior izquierda.
+ */
+md-dialog {
+  margin: auto !important;
+}

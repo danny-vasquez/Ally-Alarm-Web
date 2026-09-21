@@ -1,0 +1,77 @@
+[
+  {
+    "id": "entrenamiento",
+    "name": "Entrenamiento",
+    "color": "category-a",
+    "activities": [
+      {
+        "id": "entrenamiento-1",
+        "activity": "Despertarse",
+        "time": "45 mins antes",
+        "message": "¡Buenos días!"
+      },
+      {
+        "id": "entrenamiento-2",
+        "activity": "Desayunar",
+        "time": "30 mins antes",
+        "message": "Come saludablemente"
+      }
+    ]
+  },
+  {
+    "id": "viajes",
+    "name": "Viajes",
+    "color": "category-b",
+    "activities": [
+      {
+        "id": "viajes-1",
+        "activity": "Arreglarse",
+        "time": "3 horas antes",
+        "message": "¡Comienza a alistarte!"
+      },
+      {
+        "id": "viajes-2",
+        "activity": "Verificar todo",
+        "time": "2.5 horas antes",
+        "message": "¿Segura que no te falta nada?"
+      },
+      {
+        "id": "viajes-3",
+        "activity": "Salir de casa",
+        "time": "2 horas antes",
+        "message": "Hora de ir al aeropuerto"
+      },
+      {
+        "id": "viajes-4",
+        "activity": "Último aviso",
+        "time": "45 mins antes",
+        "message": "Ya deberías estar en sala de espera"
+      }
+    ]
+  },
+  {
+    "id": "medicamento",
+    "name": "Medicamento",
+    "color": "category-c",
+    "activities": [
+      {
+        "id": "medicamento-1",
+        "activity": "Falta poco",
+        "time": "15 mins antes",
+        "message": "Ya casi es hora de la pastilla"
+      },
+      {
+        "id": "medicamento-2",
+        "activity": "Tómatela",
+        "time": "5 mins antes",
+        "message": "Hora de la pastilla"
+      },
+      {
+        "id": "medicamento-3",
+        "activity": "Ya la tomaste",
+        "time": "10 min después",
+        "message": "¿Ya te tomaste la pastilla?"
+      }
+    ]
+  }
+]
