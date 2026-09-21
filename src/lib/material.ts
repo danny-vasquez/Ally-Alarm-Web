@@ -18,6 +18,7 @@ import { MdOutlinedSelect } from '@material/web/select/outlined-select.js'
 import { MdSelectOption } from '@material/web/select/select-option.js'
 import { MdDialog } from '@material/web/dialog/dialog.js'
 import { MdDivider } from '@material/web/divider/divider.js'
+import { MdIcon } from '@material/web/icon/icon.js'
 
 export const MdFilledButtonR = createComponent({
   react: React,
@@ -90,4 +91,10 @@ export const MdDividerR = createComponent({
   react: React,
   tagName: 'md-divider',
   elementClass: MdDivider,
+})
+
+export const MdIconR = createComponent({
+  react: React,
+  tagName: 'md-icon',
+  elementClass: MdIcon,
 })

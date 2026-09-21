@@ -1,14 +1,15 @@
-import {
-  AlarmClock,
-  LayoutTemplate,
-  House,
-  Shapes,
-  Settings,
-  X,
-} from 'lucide-react'
+import { LayoutTemplate, House, CircleX, Settings, X } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { CSSProperties } from 'react'
-import { MdDividerR, MdIconButtonR, MdListItemR, MdListR } from '../../lib/material'
+import {
+  MdDividerR,
+  MdIconR,
+  MdIconButtonR,
+  MdListItemR,
+  MdListR,
+} from '../../lib/material'
+import allyAlarmLogo from '../../assets/logo_ally_alarm.png'
+import sidebarPhoto from '../../assets/sidebar-photo.png'
 import userData from '../../data/user.json'
 import type { AppUser } from '../../types/user'
 
@@ -21,7 +22,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { label: 'Inicio', icon: House },
   { label: 'Plantillas', icon: LayoutTemplate, active: true },
-  { label: 'Categorías', icon: Shapes },
+  { label: 'Categorías', icon: CircleX },
   { label: 'Configuración', icon: Settings },
 ]
 
@@ -44,9 +45,10 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-[280px] max-w-[85vw] -translate-x-full flex-col items-center gap-6 overflow-y-auto border-r-[1.29px] border-primary bg-surface p-6 transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen lg:w-sidebar lg:max-w-none lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-[280px] max-w-[85vw] -translate-x-full flex-col items-center gap-6 overflow-y-auto border-r-[1.29px] border-primary bg-surface bg-cover bg-center bg-no-repeat p-6 transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen lg:w-sidebar lg:max-w-none lg:translate-x-0 ${
           open ? 'translate-x-0' : ''
         }`}
+        style={{ backgroundImage: `url(${sidebarPhoto})` }}
       >
         <MdIconButtonR
           onClick={onClose}
@@ -57,13 +59,11 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         </MdIconButtonR>
 
         <div className="flex w-full items-center justify-center gap-3">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary-container lg:h-20 lg:w-20">
-            <AlarmClock
-              size={32}
-              strokeWidth={2}
-              className="text-secondary lg:h-10 lg:w-10"
-            />
-          </div>
+          <img
+            src={allyAlarmLogo}
+            alt="Logo de Ally Alarm"
+            className="h-14 w-14 shrink-0 object-contain lg:h-20 lg:w-20"
+          />
           <span className="font-display text-2xl font-bold text-on-primary-container lg:text-[32px]">
             Ally Alarm
           </span>
@@ -72,6 +72,9 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         <MdListR
           className="w-full rounded-xl"
           aria-label="Navegación principal"
+          style={
+            { '--md-list-container-color': 'transparent' } as CSSProperties
+          }
         >
           {NAV_ITEMS.map(({ label, icon: Icon, active }) => (
             <MdListItemR
@@ -109,12 +112,15 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                 className="h-full w-full rounded-full object-cover"
               />
             ) : (
-              <span className="font-display text-xl font-bold text-secondary">
-                {user.name.charAt(0).toUpperCase()}
-              </span>
+              <MdIconR
+                className="text-secondary"
+                style={{ '--md-icon-size': '28px' } as CSSProperties}
+              >
+                person
+              </MdIconR>
             )}
           </div>
-          <span className="font-display text-xl font-bold text-on-primary-container lg:text-[28px]">
+          <span className="font-display text-xl font-bold text-white lg:text-[28px]">
             {user.name}
           </span>
         </div>
