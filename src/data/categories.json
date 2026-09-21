@@ -1,0 +1,34 @@
+[
+  {
+    "id": "entrenamiento",
+    "name": "Entrenamiento",
+    "color": "category-a",
+    "icon": "dumbbell",
+    "alarmCount": 3,
+    "active": false
+  },
+  {
+    "id": "reuniones",
+    "name": "Reuniones",
+    "color": "category-d",
+    "icon": "users",
+    "alarmCount": 2,
+    "active": false
+  },
+  {
+    "id": "medicamento",
+    "name": "Medicamento",
+    "color": "category-c",
+    "icon": "pill",
+    "alarmCount": 1,
+    "active": true
+  },
+  {
+    "id": "estudio-trabajo",
+    "name": "Estudio/Trabajo",
+    "color": "category-e",
+    "icon": "book-open",
+    "alarmCount": 1,
+    "active": true
+  }
+]
