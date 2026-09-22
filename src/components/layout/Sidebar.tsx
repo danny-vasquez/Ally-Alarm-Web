@@ -49,7 +49,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-[280px] max-w-[85vw] -translate-x-full flex-col items-center gap-6 overflow-y-auto border-r-[1.29px] border-primary bg-surface bg-cover bg-center bg-no-repeat p-6 transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen lg:w-sidebar lg:max-w-none lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-[280px] max-w-[85vw] -translate-x-full flex-col items-center gap-6 overflow-y-auto border-r-[1.29px] border-primary bg-surface bg-cover bg-center bg-no-repeat p-6 transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen lg:w-[220px] lg:max-w-none lg:translate-x-0 lg:gap-5 lg:p-4 ${
           open ? 'translate-x-0' : ''
         }`}
         style={{ backgroundImage: `url(${sidebarPhoto})` }}
@@ -66,9 +66,9 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           <img
             src={allyAlarmLogo}
             alt="Logo de Ally Alarm"
-            className="h-14 w-14 shrink-0 object-contain lg:h-20 lg:w-20"
+            className="h-14 w-14 shrink-0 object-contain lg:h-14 lg:w-14"
           />
-          <span className="font-display text-2xl font-bold text-on-primary-container lg:text-[32px]">
+          <span className="font-display text-2xl font-bold text-on-primary-container lg:text-2xl">
             Ally Alarm
           </span>
         </div>
@@ -81,7 +81,9 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           }
         >
           {NAV_ITEMS.map(({ label, icon: Icon, path }) => {
-            const active = location.pathname === path
+            const active =
+              location.pathname === path ||
+              (path !== '/' && location.pathname.startsWith(`${path}/`))
             return (
               <MdListItemR
                 key={label}
@@ -101,6 +103,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                 style={
                   {
                     '--md-list-item-label-text-font': 'var(--font-display)',
+                    '--md-list-item-label-text-size': '14px',
                     '--md-list-item-label-text-weight': active ? '600' : '500',
                   } as CSSProperties
                 }
@@ -135,7 +138,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </MdIconR>
             )}
           </div>
-          <span className="font-display text-xl font-bold text-white lg:text-[28px]">
+          <span className="font-display text-xl font-bold text-white lg:text-xl">
             {user.name}
           </span>
         </div>
