@@ -18,6 +18,15 @@ npm run dev
 
 Esto levanta el servidor de desarrollo (Vite) en `http://localhost:5173`.
 
+## Pantallas incluidas
+
+- **Inicio** (`/`) — calendario semanal con las alarmas, filtrable por categoría.
+- **Plantillas** (`/plantillas`) — lista de plantillas por categoría, con opción de crear, editar y eliminar.
+- **Crear/editar plantilla** (`/plantillas/editar/:categoryId`) — armado de los pasos (secciones) de una plantilla.
+- **Categorías** (`/categorias`) — activar o desactivar todas las alarmas de una categoría.
+- **Configuración** (`/configuracion`) — accesos a las distintas configuraciones de la app.
+- **Gestión de dispositivos** (`/configuracion/gestion-dispositivos`) — comportamiento de las alarmas por dispositivo (móvil, smartwatch, web).
+
 ## Sobre la fidelidad al diseño
 
 El diseño está hecho pensando en pantallas de 1920x1080, que es el tamaño
