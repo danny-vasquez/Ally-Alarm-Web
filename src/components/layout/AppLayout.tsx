@@ -28,7 +28,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           </span>
         </header>
 
-        <main className="flex flex-1 flex-col gap-8 px-4 py-6 sm:px-8 md:px-10 lg:px-8 lg:py-10">
+        <main className="flex flex-1 flex-col gap-8 px-4 py-6 sm:px-8 sm:py-8 md:px-10 lg:px-content-x lg:py-content-y">
           {children}
         </main>
       </div>

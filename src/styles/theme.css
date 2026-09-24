@@ -18,6 +18,7 @@
   --color-app-bg: rgba(188, 191, 255, 0.3);
   --color-outline: #bcbfff;
   --color-outline-variant: #eeeeee;
+  --color-outline-neutral: #cccccc;
   --color-tonal: #f5eff7;
 
   /* Acentos de categoría (asignables a nuevas plantillas/categorías) */
@@ -32,8 +33,18 @@
 
   /* Medidas del layout (base diseño 1920x1080) */
   --spacing-sidebar: 280px;
-  --spacing-content-x: 58px;
+  --spacing-content-x: 48px;
   --spacing-content-y: 40px;
+
+  /*
+   * Quiebres extra para pantallas grandes: el calendario de Inicio necesita
+   * más de un paso entre 1280px y el diseño base de 1920px para achicarse
+   * con gracia (columnas de día + celda de hora). `2xl` se redefine a
+   * 1920px (el diseño real), en vez del 1536px por defecto de Tailwind.
+   */
+  --breakpoint-xl: 1280px;
+  --breakpoint-xlm: 1600px;
+  --breakpoint-2xl: 1920px;
 }
 
 /**
@@ -80,6 +91,33 @@
   --md-sys-shape-corner-medium: 8px;
   --md-sys-shape-corner-small: 8px;
   --md-sys-shape-corner-extra-small: 8px;
+
+  /*
+   * md-switch también lee --md-sys-shape-corner-full para su track, handle
+   * y state-layer, así que el override de arriba lo dejaba con esquinas
+   * cuadradas de 8px en vez de completamente redondo (su forma real en
+   * MD3). Se restaura el radio completo solo para el switch.
+   */
+  --md-switch-track-shape: 9999px;
+  --md-switch-handle-shape: 9999px;
+  --md-switch-state-layer-shape: 9999px;
+
+  /* El track desactivado no debe llevar el borde morado (--md-sys-color-outline) */
+  --md-switch-track-outline-width: 0px;
+
+  /*
+   * El relleno del track apagado ya sale correcto (--md-sys-color-surface-
+   * container-highest -> var(--color-tonal) = #F5EFF7). Por defecto MD3 pinta
+   * la bolita apagada con --md-sys-color-outline (morado) y la hace más chica
+   * (16px vs 24px encendida); acá se deja blanca y del mismo tamaño en los
+   * dos estados, como en el diseño.
+   */
+  --md-switch-handle-color: #ffffff;
+  --md-switch-hover-handle-color: #ffffff;
+  --md-switch-focus-handle-color: #ffffff;
+  --md-switch-pressed-handle-color: #ffffff;
+  --md-switch-handle-height: 24px;
+  --md-switch-handle-width: 24px;
 }
 
 /**
@@ -91,4 +129,29 @@
  */
 md-dialog {
   margin: auto !important;
+}
+
+/**
+ * Los desplegables (md-outlined-select) miden 220x40px en el diseño base de
+ * 1920x1080: --md-outlined-field-top/bottom-space controlan la altura (no
+ * hay un token de "height" directo, la caja crece con estos + el line-height
+ * del contenido, 24px por defecto -> 8+8+24 = 40px). En reposo el borde es
+ * gris neutro (#CCCCCC, --color-outline-neutral) en vez del morado que usan
+ * el resto de los outlines, y la flechita va en negro.
+ */
+md-outlined-select {
+  --md-outlined-field-top-space: 8px;
+  --md-outlined-field-bottom-space: 8px;
+  --md-outlined-field-outline-color: var(--color-outline-neutral);
+  --md-outlined-field-trailing-content-color: #000000;
+
+  /*
+   * El componente trae un `min-width: 210px` fijo en su propio :host (no
+   * hay token para configurarlo), que ganaba sobre nuestro ancho de 220px
+   * y evitaba que el select se achicara en pantallas angostas, provocando
+   * scroll horizontal en grids de columnas estrechas (p. ej. Gestión de
+   * dispositivos). Se anula para que el ancho lo controle solo la clase
+   * w-55/max-w-full de Tailwind.
+   */
+  min-width: 0;
 }

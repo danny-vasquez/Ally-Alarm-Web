@@ -1,10 +1,11 @@
-import { Monitor, Smartphone, Watch } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import type { CSSProperties } from 'react'
 import { useState } from 'react'
 import PageHeader from '../components/layout/PageHeader'
 import Select from '../components/ui/Select'
 import { MdSwitchR } from '../lib/material'
+import iconoTelefono from '../assets/icono-telefono-inteligente.svg'
+import iconoSmartwatch from '../assets/icono-smartwatch.svg'
+import iconoWeb from '../assets/icono-web.svg'
 
 interface DeviceField {
   id: string
@@ -17,7 +18,7 @@ interface DeviceConfiguration {
   id: string
   name: string
   description: string
-  icon: LucideIcon
+  icon: string
   fields: DeviceField[]
   repeat: boolean
 }
@@ -27,7 +28,7 @@ const INITIAL_DEVICES: DeviceConfiguration[] = [
     id: 'movil',
     name: 'Móvil',
     description: 'Comportamiento de alarmas en el teléfono',
-    icon: Smartphone,
+    icon: iconoTelefono,
     fields: [
       { id: 'sonido', label: 'Sonido', value: 'Sonar', options: ['Sonar', 'Silencio'] },
       {
@@ -44,7 +45,7 @@ const INITIAL_DEVICES: DeviceConfiguration[] = [
     id: 'smartwatch',
     name: 'Smartwatch',
     description: 'Comportamiento de alarmas en el smartwatch',
-    icon: Watch,
+    icon: iconoSmartwatch,
     fields: [
       { id: 'sonido', label: 'Sonido', value: 'Silencio', options: ['Sonar', 'Silencio'] },
       {
@@ -61,7 +62,7 @@ const INITIAL_DEVICES: DeviceConfiguration[] = [
     id: 'web',
     name: 'Web',
     description: 'Comportamiento de alarmas en el navegador',
-    icon: Monitor,
+    icon: iconoWeb,
     fields: [
       { id: 'sonido', label: 'Sonido', value: 'Silencio', options: ['Sonar', 'Silencio'] },
       {
@@ -82,34 +83,35 @@ interface DeviceCardProps {
 }
 
 function DeviceCard({ device, onFieldChange, onRepeatChange }: DeviceCardProps) {
-  const Icon = device.icon
-
   return (
-    <section className="flex min-h-[340px] flex-col rounded-lg border border-primary-container bg-surface px-4 py-5 shadow-[0_4px_4px_rgba(0,0,0,0.18)]">
-      <div className="flex items-start gap-4">
-        <Icon size={40} strokeWidth={1.5} className="shrink-0 text-on-primary-container" aria-hidden="true" />
+    <section className="flex min-h-[340px] min-w-0 flex-col rounded-lg border border-primary-container bg-surface p-6 shadow-[0_4px_4px_rgba(0,0,0,0.18)]">
+      <div className="flex items-start gap-5">
+        <img
+          src={device.icon}
+          alt=""
+          className="h-13.75 w-13.75 shrink-0 object-contain"
+        />
         <div className="min-w-0">
           <h2 className="font-display text-2xl font-medium leading-none text-on-primary-container">{device.name}</h2>
           <p className="max-w-[240px] font-display text-sm leading-tight text-on-primary-container">{device.description}</p>
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-5">
+      <div className="mt-10 flex flex-col gap-7.5">
         {device.fields.map((field) => (
-          <div key={field.id} className="flex items-center justify-between gap-3">
-            <span className="font-display text-sm text-on-primary-container">{field.label}</span>
+          <div key={field.id} className="flex min-w-0 items-center justify-between gap-3">
+            <span className="shrink-0 font-display text-sm text-on-primary-container">{field.label}</span>
             <Select
               label=""
               options={field.options.map((option) => ({ value: option, label: option }))}
               value={field.value}
               onChange={(value) => onFieldChange(field.id, value)}
-              className="!w-[157px] shrink-0"
             />
           </div>
         ))}
       </div>
 
-      <div className="mt-auto flex items-center justify-between pt-8">
+      <div className="mt-auto flex items-center justify-between pt-10">
         <span className="font-display text-sm text-on-primary-container">Repetir</span>
         <MdSwitchR
           selected={device.repeat}
@@ -155,7 +157,7 @@ export default function GestionDispositivosPage() {
         subtitle="Configura cómo funcionan tus alarmas en cada dispositivo"
       />
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {devices.map((device) => (
           <DeviceCard
             key={device.id}

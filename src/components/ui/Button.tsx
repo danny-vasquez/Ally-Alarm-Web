@@ -46,17 +46,24 @@ export default function Button({
     className: `min-w-[160px] justify-center ${className ?? ''}`,
   }
 
+  // Filled/tonal en el diseño llevan la misma sombra que tarjetas y diálogo
+  // (0px 4px 4px rgba(0,0,0,0.25)); outlined/text quedan planos.
+  const raisedProps = {
+    ...commonProps,
+    className: `${commonProps.className} shadow-[0_4px_4px_rgba(0,0,0,0.25)]`,
+  }
+
   switch (variant) {
     case 'tonal':
       return (
-        <MdFilledTonalButtonR {...commonProps}>
+        <MdFilledTonalButtonR {...raisedProps}>
           {iconSlot}
           {children}
         </MdFilledTonalButtonR>
       )
     case 'tonal-muted':
       return (
-        <MdFilledTonalButtonR {...commonProps} style={mutedTonalStyle}>
+        <MdFilledTonalButtonR {...raisedProps} style={mutedTonalStyle}>
           {iconSlot}
           {children}
         </MdFilledTonalButtonR>
@@ -78,7 +85,7 @@ export default function Button({
     case 'filled':
     default:
       return (
-        <MdFilledButtonR {...commonProps}>
+        <MdFilledButtonR {...raisedProps}>
           {iconSlot}
           {children}
         </MdFilledButtonR>

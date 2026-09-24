@@ -22,7 +22,7 @@ export default function PlantillasPage() {
   const [categoryFilter, setCategoryFilter] = useState(ALL_CATEGORIES)
 
   const categoryOptions = [
-    { value: ALL_CATEGORIES, label: 'Todas las categorías' },
+    { value: ALL_CATEGORIES, label: 'Todas' },
     ...templates.map((template) => ({
       value: template.id,
       label: template.name,
@@ -53,15 +53,17 @@ export default function PlantillasPage() {
       />
 
       <div className="flex flex-col-reverse items-stretch justify-between gap-4 sm:flex-row sm:items-end">
-        <div className="w-full sm:w-64">
-          <Select
-            label="Categoría"
-            options={categoryOptions}
-            value={categoryFilter}
-            onChange={setCategoryFilter}
-          />
-        </div>
-        <Button variant="tonal" icon={<Plus size={18} strokeWidth={3} />}>
+        <Select
+          label="Categoría"
+          options={categoryOptions}
+          value={categoryFilter}
+          onChange={setCategoryFilter}
+        />
+        <Button
+          variant="tonal"
+          icon={<Plus size={18} strokeWidth={3} />}
+          className="w-50"
+        >
           Crear Plantilla
         </Button>
       </div>

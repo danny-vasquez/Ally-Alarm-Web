@@ -1,22 +1,8 @@
-import { BookOpen, Dumbbell, Pill, Users } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import type { CSSProperties } from 'react'
 import { MdSwitchR } from '../../lib/material'
 import type { Category } from '../../types/category'
-
-const CATEGORY_ICON_MAP: Record<string, LucideIcon> = {
-  dumbbell: Dumbbell,
-  users: Users,
-  pill: Pill,
-  'book-open': BookOpen,
-}
-
-const CATEGORY_BG_MAP: Record<string, string> = {
-  'category-a': 'bg-category-a',
-  'category-c': 'bg-category-c',
-  'category-d': 'bg-category-d',
-  'category-e': 'bg-category-e',
-}
+import iconoEstudio from '../../assets/icono-estudio.svg'
+import { CATEGORY_ICON_MAP, CATEGORY_BG_MAP } from '../../data/categoryVisuals'
 
 interface CategoryToggleCardProps {
   category: Category
@@ -27,17 +13,19 @@ export default function CategoryToggleCard({
   category,
   onToggle,
 }: CategoryToggleCardProps) {
-  const Icon = CATEGORY_ICON_MAP[category.icon] ?? BookOpen
+  const icon = CATEGORY_ICON_MAP[category.icon] ?? iconoEstudio
   const background = CATEGORY_BG_MAP[category.color] ?? 'bg-category-a'
 
   return (
     <div
-      className={`flex w-full items-center justify-between gap-4 rounded-lg border border-primary-container px-5 py-4 ${background}`}
+      className={`flex w-full items-center justify-between gap-4 rounded-lg px-5 py-4 shadow-[0_4px_4px_rgba(0,0,0,0.25)] ${background}`}
     >
       <div className="flex min-w-0 items-center gap-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface text-secondary">
-          <Icon size={24} aria-hidden="true" />
-        </span>
+        <img
+          src={icon}
+          alt=""
+          className="h-10 w-10 shrink-0 object-contain"
+        />
         <div className="min-w-0 font-display text-on-primary-container">
           <h2 className="truncate text-base font-semibold">{category.name}</h2>
           <p className="text-sm">

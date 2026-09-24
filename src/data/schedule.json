@@ -1,0 +1,50 @@
+[
+  {
+    "id": "gimnasio-lunes",
+    "day": "lunes",
+    "hour": "09:00",
+    "title": "Gimnasio",
+    "timeLabel": "9:00am",
+    "categoryId": "entrenamiento"
+  },
+  {
+    "id": "gimnasio-jueves",
+    "day": "jueves",
+    "hour": "09:00",
+    "title": "Gimnasio",
+    "timeLabel": "9:00am",
+    "categoryId": "entrenamiento"
+  },
+  {
+    "id": "natacion-martes",
+    "day": "martes",
+    "hour": "11:00",
+    "title": "Natación",
+    "timeLabel": "11:00am",
+    "categoryId": "entrenamiento"
+  },
+  {
+    "id": "reunion-ux-sabado",
+    "day": "sabado",
+    "hour": "12:00",
+    "title": "Reunión UX",
+    "timeLabel": "12:00pm",
+    "categoryId": "estudio-trabajo"
+  },
+  {
+    "id": "pastilla-lunes",
+    "day": "lunes",
+    "hour": "13:00",
+    "title": "Pastilla memoria",
+    "timeLabel": "1:00pm",
+    "categoryId": "medicamento"
+  },
+  {
+    "id": "pastilla-miercoles",
+    "day": "miercoles",
+    "hour": "13:00",
+    "title": "Pastilla memoria",
+    "timeLabel": "1:00pm",
+    "categoryId": "medicamento"
+  }
+]

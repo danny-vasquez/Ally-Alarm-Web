@@ -1,5 +1,6 @@
-import { Navigate, Route, BrowserRouter, Routes } from 'react-router-dom'
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import AppLayout from './components/layout/AppLayout'
+import InicioPage from './pages/InicioPage'
 import PlantillasPage from './pages/PlantillasPage'
 import CategoriasPage from './pages/CategoriasPage'
 import ConfiguracionPage from './pages/ConfiguracionPage'
@@ -10,7 +11,7 @@ function App() {
     <BrowserRouter>
       <AppLayout>
         <Routes>
-          <Route path="/" element={<Navigate to="/plantillas" replace />} />
+          <Route path="/" element={<InicioPage />} />
           <Route path="/plantillas" element={<PlantillasPage />} />
           <Route path="/categorias" element={<CategoriasPage />} />
           <Route path="/configuracion" element={<ConfiguracionPage />} />

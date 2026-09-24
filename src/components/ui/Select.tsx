@@ -1,4 +1,4 @@
-import { MdOutlinedSelectR, MdSelectOptionR } from '../../lib/material'
+import { MdIconR, MdOutlinedSelectR, MdSelectOptionR } from '../../lib/material'
 import type { MdOutlinedSelect } from '@material/web/select/outlined-select.js'
 
 interface SelectOption {
@@ -32,15 +32,18 @@ export default function Select({
       label={label}
       value={value}
       required={required}
-      className={`w-full ${className ?? ''}`}
+      className={`w-55 max-w-full ${className ?? ''}`}
       onchange={(event) => {
         const target = event.target as MdOutlinedSelect
         onChange?.(target.value)
       }}
     >
+      <MdIconR slot="trailing-icon">keyboard_arrow_down</MdIconR>
       {options.map((option) => (
         <MdSelectOptionR key={option.value} value={option.value}>
-          <div slot="headline">{option.label}</div>
+          <div slot="headline" className="truncate">
+            {option.label}
+          </div>
         </MdSelectOptionR>
       ))}
     </MdOutlinedSelectR>
