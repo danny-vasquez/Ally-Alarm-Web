@@ -27,5 +27,4 @@ recursos-figma/
 
 # Screenshots y frames de Figma para comparar a ojo (ver playwright/screenshot.js)
 playwright/screenshots/*.png
-playwright/figma-frames/*.png
 playwright/diff-output/*.png

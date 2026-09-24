@@ -52,7 +52,9 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         className={`fixed inset-y-0 left-0 z-40 flex w-[280px] max-w-[85vw] -translate-x-full flex-col items-center gap-6 overflow-y-auto border-r-[1.29px] border-primary bg-surface bg-cover bg-center bg-no-repeat p-6 transition-transform duration-200 lg:sticky lg:top-0 lg:h-screen lg:w-sidebar lg:max-w-none lg:translate-x-0 ${
           open ? 'translate-x-0' : ''
         }`}
-        style={{ backgroundImage: `url(${sidebarPhoto})` }}
+        style={{
+          backgroundImage: `linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.55) 100%), url(${sidebarPhoto})`,
+        }}
       >
         <MdIconButtonR
           onClick={onClose}

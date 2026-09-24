@@ -70,7 +70,6 @@ export default function CreateTemplateModal({
           options={categoryOptions}
           value={categoryId}
           onChange={setCategoryId}
-          className="w-full max-w-74.25"
         />
         <div className="flex w-full justify-end gap-2.5">
           <Button variant="tonal-muted" onClick={handleClose}>
