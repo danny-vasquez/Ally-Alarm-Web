@@ -1,47 +1,28 @@
-import { Plus, TriangleAlert } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { Plus } from 'lucide-react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from '../components/ui/Button'
-import Dialog from '../components/ui/Dialog'
-import Select from '../components/ui/Select'
 import PageHeader from '../components/layout/PageHeader'
 import TemplateCard from '../components/templates/TemplateCard'
-import templatesData from '../data/templates.json'
+import CreateTemplateModal from '../components/templates/CreateTemplateModal'
+import DeleteTemplateModal from '../components/templates/DeleteTemplateModal'
+import { useTemplates } from '../context/TemplatesContext'
 import userData from '../data/user.json'
 import type { TemplateCategory } from '../types/template'
 import type { AppUser } from '../types/user'
 
 const user = userData as AppUser
-const ALL_CATEGORIES = 'all'
 
 export default function PlantillasPage() {
-  const [templates, setTemplates] = useState<TemplateCategory[]>(
-    templatesData as TemplateCategory[],
-  )
+  const navigate = useNavigate()
+  const { templates, deleteTemplate } = useTemplates()
   const [templateToDelete, setTemplateToDelete] =
     useState<TemplateCategory | null>(null)
-  const [categoryFilter, setCategoryFilter] = useState(ALL_CATEGORIES)
-
-  const categoryOptions = [
-    { value: ALL_CATEGORIES, label: 'Todas' },
-    ...templates.map((template) => ({
-      value: template.id,
-      label: template.name,
-    })),
-  ]
-
-  const visibleTemplates = useMemo(
-    () =>
-      categoryFilter === ALL_CATEGORIES
-        ? templates
-        : templates.filter((template) => template.id === categoryFilter),
-    [templates, categoryFilter],
-  )
+  const [createModalOpen, setCreateModalOpen] = useState(false)
 
   const confirmDelete = () => {
     if (!templateToDelete) return
-    setTemplates((current) =>
-      current.filter((template) => template.id !== templateToDelete.id),
-    )
+    deleteTemplate(templateToDelete.id)
     setTemplateToDelete(null)
   }
 
@@ -52,58 +33,43 @@ export default function PlantillasPage() {
         subtitle="Organiza tus alarmas con plantillas para tus rutinas según la categoría."
       />
 
-      <div className="flex flex-col-reverse items-stretch justify-between gap-4 sm:flex-row sm:items-end">
-        <Select
-          label="Categoría"
-          options={categoryOptions}
-          value={categoryFilter}
-          onChange={setCategoryFilter}
-        />
+      <div className="flex justify-end">
         <Button
           variant="tonal"
-          icon={<Plus size={18} strokeWidth={3} />}
-          className="w-50"
+          icon={<Plus size={14} strokeWidth={3} />}
+          className="w-50 text-[16px] font-bold flex"
+          onClick={() => setCreateModalOpen(true)}
         >
           Crear Plantilla
         </Button>
       </div>
 
       <div className="flex flex-1 flex-col gap-7">
-        {visibleTemplates.map((template) => (
+        {templates.map((template) => (
           <TemplateCard
             key={template.id}
             template={template}
+            onEdit={(t) => navigate(`/plantillas/editar/${t.id}`)}
             onDelete={setTemplateToDelete}
           />
         ))}
       </div>
 
-      <Dialog
+      <DeleteTemplateModal
         open={templateToDelete !== null}
-        onOpenChange={(open) => {
-          if (!open) setTemplateToDelete(null)
+        templateName={templateToDelete?.name ?? ''}
+        onCancel={() => setTemplateToDelete(null)}
+        onConfirm={confirmDelete}
+      />
+
+      <CreateTemplateModal
+        open={createModalOpen}
+        onClose={() => setCreateModalOpen(false)}
+        onContinue={(categoryId) => {
+          setCreateModalOpen(false)
+          navigate(`/plantillas/editar/${categoryId}`)
         }}
-        icon={<TriangleAlert size={40} />}
-        headline={`¿Deseas eliminar la plantilla para "${templateToDelete?.name}"?`}
-        actions={
-          <>
-            <Button
-              variant="tonal-muted"
-              onClick={() => setTemplateToDelete(null)}
-            >
-              Cancelar
-            </Button>
-            <Button variant="filled" onClick={confirmDelete}>
-              Eliminar
-            </Button>
-          </>
-        }
-      >
-        <p className="max-w-[390px] font-display text-base text-on-primary-container">
-          Tu configuración de alarmas previas o posteriores para esta
-          categoría dejarán de funcionar
-        </p>
-      </Dialog>
+      />
     </>
   )
 }

@@ -62,14 +62,14 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           <X size={22} />
         </MdIconButtonR>
 
-        <div className="py-[10px] flex w-full items-center justify-center gap-3 bg-amber-200">
+        <div className="py-2.5 mb-5 flex w-full items-center justify-center gap-3">
           <img
             src={allyAlarmLogo}
             alt="Logo de Ally Alarm"
             className="h-14 w-14 shrink-0 object-contain lg:h-20 lg:w-20"
           />
 
-          <span className="leading-none hrink-0 bg-red-100 font-display text-2xl font-bold text-on-primary-container lg:text-[32px] text-center">
+          <span className="leading-none hrink-0 font-display text-2xl font-bold text-on-primary-container lg:text-[32px] text-center">
             Ally<br />Alarm
           </span>
         </div>
@@ -103,14 +103,16 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                 }`}
                 style={
                   {
+                    //font bold
                     '--md-list-item-label-text-font': 'var(--font-display)',
                     '--md-list-item-label-text-size': '16px',
-                    '--md-list-item-label-text-weight': active ? '600' : '500',
+                    '--md-list-item-label-text-weight': active ? '700' : '700',
+                    gap: '5px',
                   } as CSSProperties
                 }
               >
                 <span slot="start" className="inline-flex text-secondary">
-                  <Icon size={20} strokeWidth={2} />
+                  <Icon size={25} strokeWidth={2} />
                 </span>
                 {label}
               </MdListItemR>
@@ -122,7 +124,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
 
         <MdDividerR />
 
-        <div className="flex w-full items-center justify-center gap-4 py-2">
+        <div className="flex w-full items-center justify-center gap-4 py-2 mt-2.5">
           <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full bg-primary-container">
             {user.avatarUrl ? (
               <img
@@ -133,7 +135,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             ) : (
               <MdIconR
                 className="text-secondary"
-                style={{ '--md-icon-size': '28px' } as CSSProperties}
+                style={{ '--md-icon-size': '47px' } as CSSProperties}
               >
                 person
               </MdIconR>

@@ -49,7 +49,7 @@ export default function WeekCalendar({ events }: WeekCalendarProps) {
     <div className="w-full min-w-0 overflow-x-auto rounded-lg border-[1.29px] border-primary-container bg-surface shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
       <div className={`grid ${GRID_COLS}`}>
         <div className="flex h-10 items-center justify-center border-b-[1.29px] border-r border-b-secondary border-r-primary-container xl:h-10.5 xlm:h-11 2xl:h-12.5">
-          <span className="font-display text-xs font-bold text-on-primary-container">
+          <span className="font-display text-[16px] font-bold text-on-primary-container">
             Hora
           </span>
         </div>

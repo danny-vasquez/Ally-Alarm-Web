@@ -83,8 +83,15 @@ interface DeviceCardProps {
 }
 
 function DeviceCard({ device, onFieldChange, onRepeatChange }: DeviceCardProps) {
+  // Espaciadores manuales del diseño (gestionDispositivos.html): un div
+  // vacío de 10px entre el header y los campos, y otro entre el último
+  // campo y "Repetir" — 80px en vez de 10px cuando la tarjeta tiene menos
+  // de 3 campos (Web), para compensar la fila que falta y mantener el
+  // switch de "Repetir" a la misma altura en las 3 tarjetas.
+  const preRepeatSpacer = 15 + (3 - device.fields.length) * 40
+
   return (
-    <section className="flex min-h-[340px] min-w-0 flex-col rounded-lg border border-primary-container bg-surface p-6 shadow-[0_4px_4px_rgba(0,0,0,0.18)]">
+    <section className="flex min-h-[340px] min-w-0 flex-col rounded-lg border border-primary-container bg-surface px-5 py-6 shadow-[0_4px_4px_rgba(0,0,0,0.18)]">
       <div className="flex items-start gap-5">
         <img
           src={device.icon}
@@ -92,12 +99,14 @@ function DeviceCard({ device, onFieldChange, onRepeatChange }: DeviceCardProps) 
           className="h-13.75 w-13.75 shrink-0 object-contain"
         />
         <div className="min-w-0">
-          <h2 className="font-display text-2xl font-medium leading-none text-on-primary-container">{device.name}</h2>
+          <h2 className="font-display text-[32px] font-medium leading-none text-on-primary-container">{device.name}</h2>
           <p className="max-w-[240px] font-display text-sm leading-tight text-on-primary-container">{device.description}</p>
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-7.5">
+      <div className="h-8" />
+
+      <div className="mt-10 flex flex-col gap-7.5 px-1">
         {device.fields.map((field) => (
           <div key={field.id} className="flex min-w-0 items-center justify-between gap-3">
             <span className="shrink-0 font-display text-sm text-on-primary-container">{field.label}</span>
@@ -110,6 +119,8 @@ function DeviceCard({ device, onFieldChange, onRepeatChange }: DeviceCardProps) 
           </div>
         ))}
       </div>
+
+      <div className="h-8" />
 
       <div className="mt-auto flex items-center justify-between pt-10">
         <span className="font-display text-sm text-on-primary-container">Repetir</span>

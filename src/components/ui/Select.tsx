@@ -32,7 +32,7 @@ export default function Select({
       label={label}
       value={value}
       required={required}
-      className={`w-55 max-w-full ${className ?? ''}`}
+      className={`max-w-full ${className ?? 'w-55'}`}
       onchange={(event) => {
         const target = event.target as MdOutlinedSelect
         onChange?.(target.value)

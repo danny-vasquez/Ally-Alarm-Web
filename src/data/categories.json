@@ -4,6 +4,7 @@
     "name": "Entrenamiento",
     "color": "category-a",
     "icon": "dumbbell",
+    "iconSize": 38,
     "alarmCount": 3,
     "active": false
   },
@@ -12,6 +13,7 @@
     "name": "Reuniones",
     "color": "category-d",
     "icon": "users",
+    "iconSize": 38,
     "alarmCount": 2,
     "active": false
   },
@@ -20,6 +22,7 @@
     "name": "Medicamento",
     "color": "category-c",
     "icon": "pill",
+    "iconSize": 44,
     "alarmCount": 1,
     "active": true
   },
@@ -28,6 +31,7 @@
     "name": "Estudio/Trabajo",
     "color": "category-e",
     "icon": "book-open",
+    "iconSize": 44,
     "alarmCount": 1,
     "active": true
   }

@@ -5,7 +5,7 @@ interface PageHeaderProps {
 
 export default function PageHeader({ title, subtitle }: PageHeaderProps) {
   return (
-    <div className="flex flex-col gap-[10.33px]">
+    <div className="flex flex-col">
       <h1 className="font-display text-[32px] font-bold text-on-primary-container lg:text-[32px]">
         {title}
       </h1>

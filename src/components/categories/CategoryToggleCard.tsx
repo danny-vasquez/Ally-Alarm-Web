@@ -18,13 +18,14 @@ export default function CategoryToggleCard({
 
   return (
     <div
-      className={`flex w-full items-center justify-between gap-4 rounded-lg px-5 py-4 shadow-[0_4px_4px_rgba(0,0,0,0.25)] ${background}`}
+      className={`flex w-full items-center justify-between gap-4 rounded-lg px-6.5 py-7 shadow-[0_4px_4px_rgba(0,0,0,0.25)] ${background}`}
     >
-      <div className="flex min-w-0 items-center gap-4">
+      <div className="flex min-w-0 items-center gap-5">
         <img
           src={icon}
           alt=""
-          className="h-10 w-10 shrink-0 object-contain"
+          className="shrink-0 object-contain"
+          style={{ width: category.iconSize ?? 40, height: category.iconSize ?? 40 }}
         />
         <div className="min-w-0 font-display text-on-primary-container">
           <h2 className="truncate text-base font-semibold">{category.name}</h2>
